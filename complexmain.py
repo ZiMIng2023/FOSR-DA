@@ -1,7 +1,7 @@
 import pickle
 import numpy as np
-from bianjieyueshu import CenterLoss
-from SR2CNN import getSR2CNN
+from boundary_constraints import CenterLoss
+from feature_extractor import getSR2CNN
 import os
 from complexconcate import *
 import torch

@@ -1,6 +1,6 @@
 from source_data import source_loader
 from distance_based_target_data import target_loader
-from SR2CNN import *
+from feature_extractor import *
 from discriminator import *
 
 

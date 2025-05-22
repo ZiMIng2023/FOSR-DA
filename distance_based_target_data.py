@@ -1,7 +1,7 @@
 import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 import copy
-from SR2CNN import getSR2CNN
+from feature_extractor import getSR2CNN
 import torch
 from source_data import source_map
 from target_data import target_map,target_unknown_map

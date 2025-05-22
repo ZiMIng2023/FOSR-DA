@@ -1,11 +1,35 @@
+import torch
+from dataopen import X_train,y_train
+import numpy as np
+from complexnn import ComplexAutoencoder
+
+
+model1 = ComplexAutoencoder(input_dim=128, encoding_dim=128)
+version='RELEASE'
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model_path='./enhancemcom15.pth'.format(version)
+#model.load_state_dict(model_path)
+model1.load_state_dict(torch.load(model_path, map_location=device))
+# 将模型设置为评估模式，不进行梯度计算
+model1.eval()
+# 前向传播，得到输出和特征
+feature, _ = model1(X_train)
+# 将特征与原始信号沿着第二个维度拼接，得到3*128的样本
+train_combined = torch.cat((X_train, feature.unsqueeze(1)), dim=1)
+num_seen_classes=4
+train_map={}
+for i in range(num_seen_classes):
+  # 根据类别标签从整体样本中筛选出该类别的样本数据
+  class_idx = np.where(y_train ==i)
+  # 将该类别的样本数据赋值给train_map中对应的键
+  train_map[i] = train_combined[class_idx]
 
 import os
 import torch
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 import numpy as np
 from source_data import source_map
-from dataconcate import train_map
-from SR2CNN import getSR2CNN
+from feature_extractor import getSR2CNN
 
 version='RELEASE'
 feature_dim=3*128
