@@ -6,7 +6,11 @@
 FOSR-DA is a feature-enhanced deep learning framework for open-set recognition of communication jamming using raw I/Q data and adversarial domain adaptation.
 
 ---
+## Requirements
 
+- Python 3.9.12  
+- PyTorch 1.12.1
+  
 ## 📦 dataset
 ```
 The datasets JPR2024 and JPR2016 are available in this repository, while JPR2018 can be obtained by contacting the authors.
